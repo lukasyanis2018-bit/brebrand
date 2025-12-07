@@ -797,14 +797,14 @@
             color: #00d4ff;
         }
 
-        /* CTA Contact Section */
-        .cta-contact {
+        /* Contact Form Section */
+        .contact-section {
             padding: 100px 40px;
             background: #fff;
             position: relative;
         }
 
-        .cta-contact::before {
+        .contact-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -814,36 +814,46 @@
             background: linear-gradient(90deg, transparent, #00d4ff, transparent);
         }
 
-        .cta-container {
-            max-width: 800px;
+        .contact-container {
+            max-width: 700px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .cta-title {
+        .contact-title {
             font-size: 2.8rem;
             font-weight: 200;
             color: #000;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
+            text-align: center;
         }
 
-        .cta-subtitle {
-            font-size: 1.2rem;
+        .contact-subtitle {
+            font-size: 1.1rem;
             color: #666;
             margin-bottom: 50px;
             font-weight: 300;
             line-height: 1.8;
+            text-align: center;
         }
 
         .contact-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
-        .form-input {
+        .contact-form label {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #000;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
             padding: 18px 25px;
             border: 1px solid #e0e0e0;
             background: #fff;
@@ -852,39 +862,22 @@
             color: #000;
             transition: all 0.3s ease;
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            width: 100%;
         }
 
-        .form-input:focus {
+        .contact-form input:focus,
+        .contact-form textarea:focus {
             outline: none;
             border-color: #00d4ff;
             box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
         }
 
-        .form-input.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-textarea {
-            padding: 18px 25px;
-            border: 1px solid #e0e0e0;
-            background: #fff;
-            font-size: 1rem;
-            font-weight: 300;
-            color: #000;
-            transition: all 0.3s ease;
+        .contact-form textarea {
             resize: vertical;
             min-height: 150px;
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            grid-column: 1 / -1;
         }
 
-        .form-textarea:focus {
-            outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        .form-submit {
+        .contact-form button {
             padding: 20px 50px;
             background: #000;
             border: 2px solid #000;
@@ -895,12 +888,12 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.4s ease;
-            margin-top: 20px;
             position: relative;
             overflow: hidden;
+            align-self: center;
         }
 
-        .form-submit::before {
+        .contact-form button::before {
             content: '';
             position: absolute;
             top: 50%;
@@ -913,19 +906,53 @@
             transition: width 0.6s ease, height 0.6s ease;
         }
 
-        .form-submit:hover::before {
+        .contact-form button:hover::before {
             width: 300px;
             height: 300px;
         }
 
-        .form-submit:hover {
+        .contact-form button:hover {
             border-color: #00d4ff;
             color: #000;
         }
 
-        .form-submit span {
+        .contact-form button span {
             position: relative;
             z-index: 1;
+        }
+
+        #form-message {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+            display: none;
+        }
+
+        #form-message.success {
+            display: block;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+        }
+
+        #form-message.error {
+            display: block;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff0000;
+            color: #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 80px 20px;
+            }
+            .contact-title {
+                font-size: 2rem;
+            }
+            .contact-form button {
+                width: 100%;
+            }
         }
 
         /* Why Website Section */
@@ -1350,15 +1377,6 @@
         }
 
         @media (max-width: 968px) {
-            .cta-contact {
-                padding: 80px 30px;
-            }
-            .cta-title {
-                font-size: 2rem;
-            }
-            .contact-form {
-                grid-template-columns: 1fr;
-            }
         }
 
         .service-title {
@@ -2328,106 +2346,48 @@
     </script>
    
     
-    <!-- CTA Contact Section -->
-    <section class="cta-contact">
-        <div class="cta-container">
-            <h2 class="cta-title">Hai să discutăm despre proiectul tău</h2>
-            <p class="cta-subtitle">Completează formularul și te contactăm în maxim 24 de ore pentru o consultație gratuită</p>
+      <!-- Guarantee Section -->
+    <!-- Contact Form Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title">Contactează-ne</h2>
+            <p class="contact-subtitle">Completează formularul și te vom contacta în cel mai scurt timp</p>
             
-            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                <!-- Web3Forms Access Key -->
-                <input type="hidden" name="access_key" value="dfe2d983-fd2c-497b-8fe4-a9112bd44784">
+            <form class="contact-form" id="contactForm" action="https://submit-form.com/Igr3OyrtW" method="POST">
+                <div>
+                    <label for="name">Nume</label>
+                    <input type="text" id="name" name="name" placeholder="Numele tău complet" required />
+                </div>
                 
-                <!-- Redirect after submission (optional) -->
-                <input type="hidden" name="redirect" value="false">
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="adresa@email.ro" required />
+                </div>
                 
-                <!-- Email destination -->
-                <input type="hidden" name="from_name" value="Formular Contact Brebrand">
-                <input type="hidden" name="subject" value="Mesaj nou de pe site Brebrand">
+                <div>
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+40 XXX XXX XXX" required />
+                </div>
                 
-                <!-- Form fields -->
-                <input type="text" name="name" class="form-input" placeholder="Nume complet" required>
-                <input type="email" name="email" class="form-input" placeholder="Email" required>
-                <input type="tel" name="phone" class="form-input" placeholder="Telefon" required>
-                <input type="text" name="cabinet" class="form-input" placeholder="Nume cabinet" required>
-                <textarea name="message" class="form-textarea" placeholder="Descrie pe scurt proiectul tău..." required></textarea>
+                <div>
+                    <label for="cabinet">Nume Cabinet</label>
+                    <input type="text" id="cabinet" name="cabinet" placeholder="Numele cabinetului tău" />
+                </div>
                 
-                <!-- Submit button -->
-                <button type="submit" class="form-submit">
+                <div>
+                    <label for="message">Mesaj</label>
+                    <textarea id="message" name="message" placeholder="Descrie pe scurt proiectul tău..." required></textarea>
+                </div>
+                
+                <button type="submit">
                     <span>Trimite Mesaj</span>
                 </button>
                 
-                <!-- Success/Error messages -->
-                <div id="form-message" style="display: none; margin-top: 20px; padding: 15px; text-align: center; border-radius: 4px;"></div>
+                <div id="form-message"></div>
             </form>
         </div>
     </section>
 
-    <!-- Contact Form Handler -->
-    <script>
-        const form = document.getElementById('contactForm');
-        const formMessage = document.getElementById('form-message');
-
-        if (form) {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const submitButton = form.querySelector('.form-submit');
-                const buttonText = submitButton.querySelector('span');
-                const originalText = buttonText.textContent;
-                
-                // Disable button and show loading
-                submitButton.disabled = true;
-                buttonText.textContent = 'Se trimite...';
-                
-                try {
-                    const formData = new FormData(form);
-                    const response = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        // Show success message
-                        formMessage.style.display = 'block';
-                        formMessage.style.background = 'rgba(0, 212, 255, 0.2)';
-                        formMessage.style.border = '1px solid #00d4ff';
-                        formMessage.style.color = '#00d4ff';
-                        formMessage.innerHTML = '✓ Mesajul a fost trimis cu succes! Te contactăm în maxim 24 de ore.';
-                        
-                        // Reset form
-                        form.reset();
-                        
-                        // Hide message after 5 seconds
-                        setTimeout(() => {
-                            formMessage.style.display = 'none';
-                        }, 5000);
-                    } else {
-                        throw new Error('Submission failed');
-                    }
-                } catch (error) {
-                    // Show error message
-                    formMessage.style.display = 'block';
-                    formMessage.style.background = 'rgba(255, 0, 0, 0.2)';
-                    formMessage.style.border = '1px solid #ff0000';
-                    formMessage.style.color = '#ff6b6b';
-                    formMessage.innerHTML = '✗ A apărut o eroare. Te rugăm să încerci din nou sau contactează-ne direct la contact@brebrand.ro';
-                    
-                    setTimeout(() => {
-                        formMessage.style.display = 'none';
-                    }, 5000);
-                } finally {
-                    // Re-enable button
-                    submitButton.disabled = false;
-                    buttonText.textContent = originalText;
-                }
-            });
-        }
-    </script>
-
-      <!-- Guarantee Section -->
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -2494,6 +2454,90 @@
     </footer>
     </div>
     <!-- End Main Content -->
+
+    <!-- Contact Form Handler -->
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                console.log('Form submitted!');
+                
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const buttonSpan = submitButton.querySelector('span');
+                const originalText = buttonSpan.textContent;
+                
+                // Disable button and show loading
+                submitButton.disabled = true;
+                buttonSpan.textContent = 'Se trimite...';
+                formMessage.className = '';
+                formMessage.style.display = 'none';
+                
+                try {
+                    const formData = new FormData(contactForm);
+                    
+                    // Convert to regular object
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
+                    
+                    console.log('Sending to FormSpark...', data);
+                    
+                    const response = await fetch('https://submit-form.com/Igr3OyrtW', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    console.log('Response status:', response.status);
+                    console.log('Response ok:', response.ok);
+                    
+                    const responseData = await response.json();
+                    console.log('Response data:', responseData);
+
+                    if (response.ok) {
+                        console.log('Success!');
+                        // Show success message
+                        formMessage.className = 'success';
+                        formMessage.style.display = 'block';
+                        formMessage.textContent = '✓ Mesajul a fost trimis cu succes! Te contactăm în maxim 24 de ore.';
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Hide message after 5 seconds
+                        setTimeout(() => {
+                            formMessage.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        console.error('Response not OK:', response.status);
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    // Show error message
+                    formMessage.className = 'error';
+                    formMessage.style.display = 'block';
+                    formMessage.textContent = '✗ A apărut o eroare. Te rugăm să încerci din nou sau contactează-ne direct la contact@brebrand.ro';
+                    
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                } finally {
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    buttonSpan.textContent = originalText;
+                }
+            });
+        }
+    </script>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 
