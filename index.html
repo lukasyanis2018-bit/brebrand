@@ -2334,18 +2334,99 @@
             <h2 class="cta-title">Hai să discutăm despre proiectul tău</h2>
             <p class="cta-subtitle">Completează formularul și te contactăm în maxim 24 de ore pentru o consultație gratuită</p>
             
-            <form class="contact-form">
-                <input type="text" class="form-input" placeholder="Nume complet" required>
-                <input type="email" class="form-input" placeholder="Email" required>
-                <input type="tel" class="form-input" placeholder="Telefon" required>
-                <input type="text" class="form-input" placeholder="Nume cabinet" required>
-                <textarea class="form-textarea" placeholder="Descrie pe scurt proiectul tău..." required></textarea>
+            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="dfe2d983-fd2c-497b-8fe4-a9112bd44784">
+                
+                <!-- Redirect after submission (optional) -->
+                <input type="hidden" name="redirect" value="false">
+                
+                <!-- Email destination -->
+                <input type="hidden" name="from_name" value="Formular Contact Brebrand">
+                <input type="hidden" name="subject" value="Mesaj nou de pe site Brebrand">
+                
+                <!-- Form fields -->
+                <input type="text" name="name" class="form-input" placeholder="Nume complet" required>
+                <input type="email" name="email" class="form-input" placeholder="Email" required>
+                <input type="tel" name="phone" class="form-input" placeholder="Telefon" required>
+                <input type="text" name="cabinet" class="form-input" placeholder="Nume cabinet" required>
+                <textarea name="message" class="form-textarea" placeholder="Descrie pe scurt proiectul tău..." required></textarea>
+                
+                <!-- Submit button -->
                 <button type="submit" class="form-submit">
                     <span>Trimite Mesaj</span>
                 </button>
+                
+                <!-- Success/Error messages -->
+                <div id="form-message" style="display: none; margin-top: 20px; padding: 15px; text-align: center; border-radius: 4px;"></div>
             </form>
         </div>
     </section>
+
+    <!-- Contact Form Handler -->
+    <script>
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitButton = form.querySelector('.form-submit');
+                const buttonText = submitButton.querySelector('span');
+                const originalText = buttonText.textContent;
+                
+                // Disable button and show loading
+                submitButton.disabled = true;
+                buttonText.textContent = 'Se trimite...';
+                
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        // Show success message
+                        formMessage.style.display = 'block';
+                        formMessage.style.background = 'rgba(0, 212, 255, 0.2)';
+                        formMessage.style.border = '1px solid #00d4ff';
+                        formMessage.style.color = '#00d4ff';
+                        formMessage.innerHTML = '✓ Mesajul a fost trimis cu succes! Te contactăm în maxim 24 de ore.';
+                        
+                        // Reset form
+                        form.reset();
+                        
+                        // Hide message after 5 seconds
+                        setTimeout(() => {
+                            formMessage.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    // Show error message
+                    formMessage.style.display = 'block';
+                    formMessage.style.background = 'rgba(255, 0, 0, 0.2)';
+                    formMessage.style.border = '1px solid #ff0000';
+                    formMessage.style.color = '#ff6b6b';
+                    formMessage.innerHTML = '✗ A apărut o eroare. Te rugăm să încerci din nou sau contactează-ne direct la contact@brebrand.ro';
+                    
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                } finally {
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    buttonText.textContent = originalText;
+                }
+            });
+        }
+    </script>
+
       <!-- Guarantee Section -->
     <!-- Footer -->
     <footer>
@@ -2382,7 +2463,7 @@
                 <h4 class="footer-title">Contact</h4>
                 <div class="footer-contact-item">
                     <span class="footer-contact-label">Email</span>
-                    <a href="mailto:contact@brebrand.ro" class="footer-contact-value" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">contact@brebrand.ro</a>
+                    <a href="/cdn-cgi/l/email-protection#70131f1e04111304301202151202111e145e021f" class="footer-contact-value" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;"><span class="__cf_email__" data-cfemail="ee8d81809a8f8d9aae8c9c8b8c9c8f808ac09c81">[email&#160;protected]</span></a>
                 </div>
                 <div class="footer-contact-item">
                     <span class="footer-contact-label">Suport Clienți</span>
@@ -2414,7 +2495,7 @@
     </div>
     <!-- End Main Content -->
 
-</body>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 
     <!-- Legal Pages -->
     <div id="legal-gdpr" class="legal-page">
@@ -2427,7 +2508,7 @@
             <div class="legal-section">
                 <h2>Operator de Date</h2>
                 <p><span class="legal-highlight">Brebrand SRL</span> | CUI: 52060609 | București, România</p>
-                <p>Email: contact@brebrand.ro | Telefon: +40 778 788 032</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1929e9f85909285b19383949383909f95df839e">[email&#160;protected]</a> | Telefon: +40 778 788 032</p>
             </div>
             <div class="legal-section">
                 <h2>Date Colectate</h2>
@@ -2440,7 +2521,7 @@
             </div>
             <div class="legal-section">
                 <h2>Drepturile Tale GDPR</h2>
-                <p>Ai dreptul la: acces, rectificare, ștergere, restricționare, portabilitate și opoziție. Pentru exercitarea drepturilor, contactează-ne la contact@brebrand.ro</p>
+                <p>Ai dreptul la: acces, rectificare, ștergere, restricționare, portabilitate și opoziție. Pentru exercitarea drepturilor, contactează-ne la <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3a0acadb7a2a0b783a1b1a6a1b1a2ada7edb1ac">[email&#160;protected]</a></p>
             </div>
         </div>
     </div>
@@ -2466,7 +2547,7 @@
             </div>
             <div class="legal-section">
                 <h2>Contact</h2>
-                <p>Email: contact@brebrand.ro | Telefon: +40 778 788 032</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5b6babba1b4b6a195b7a7b0b7a7b4bbb1fba7ba">[email&#160;protected]</a> | Telefon: +40 778 788 032</p>
             </div>
         </div>
     </div>
@@ -2492,7 +2573,7 @@
             </div>
             <div class="legal-section">
                 <h2>Contact</h2>
-                <p>Pentru întrebări: contact@brebrand.ro | +40 778 788 032</p>
+                <p>Pentru întrebări: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b7874756f7a786f5b79697e79697a757f356974">[email&#160;protected]</a> | +40 778 788 032</p>
             </div>
         </div>
     </div>
@@ -2522,26 +2603,4 @@
             </div>
             <div class="legal-section">
                 <h2>Contact</h2>
-                <p>Întrebări: contact@brebrand.ro | +40 778 788 032</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function hideLegalPages() {
-            document.querySelectorAll('.legal-page').forEach(page => page.classList.remove('active'));
-            document.getElementById('main-content').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        function showLegalPage(pageId) {
-            document.getElementById('main-content').style.display = 'none';
-            document.querySelectorAll('.legal-page').forEach(page => page.classList.remove('active'));
-            const targetPage = document.getElementById('legal-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo(0, 0);
-            }
-        }
-    </script>
-</html>
+                <p>Întrebări: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ed8e8283998c8e99ad8f
