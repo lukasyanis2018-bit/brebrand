@@ -797,6 +797,38 @@
             color: #00d4ff;
         }
 
+        .footer-anpc {
+            display: flex;
+            align-items: center;
+        }
+
+        .anpc-logo {
+            height: 50px;
+            width: auto;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .anpc-logo:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 968px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .footer-anpc {
+                margin-top: 20px;
+            }
+        }
+
         /* Contact Form Section */
         .contact-section {
             padding: 100px 40px;
@@ -2449,6 +2481,11 @@
                 <a href="#confidentialitate" onclick="showLegalPage('confidentialitate'); return false;">Politică de Confidențialitate</a>
                 <a href="#gdpr" onclick="showLegalPage('gdpr'); return false;">GDPR</a>
                 <a href="#cookies" onclick="showLegalPage('cookies'); return false;">Politică Cookies</a>
+            </div>
+            <div class="footer-anpc">
+                <a href="https://anpc.ro" target="_blank" rel="noopener noreferrer">
+                    <img src="poze/ANPC.png" alt="ANPC - Autoritatea Națională pentru Protecția Consumatorilor" class="anpc-logo">
+                </a>
             </div>
         </div>
         
